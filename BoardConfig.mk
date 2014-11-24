@@ -58,7 +58,7 @@ BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
 
 TARGET_KERNEL_SOURCE := kernel/sony/msm8930
-TARGET_KERNEL_CONFIG := cyanogenmod_taoshan_defconfig
+TARGET_KERNEL_CONFIG := mokee_taoshan_defconfig
 
 BOARD_USES_QCOM_HARDWARE := true
 TARGET_USES_QCOM_BSP := true
@@ -128,7 +128,7 @@ BOARD_USES_QC_TIME_SERVICES := true
 
 TARGET_POWERHAL_NO_TOUCH_BOOST := true
 
-BOARD_HARDWARE_CLASS := device/sony/taoshan/cmhw
+BOARD_HARDWARE_CLASS := device/sony/taoshan/mkhw
 
 # TWRP configs
 DEVICE_RESOLUTION := 480x854
