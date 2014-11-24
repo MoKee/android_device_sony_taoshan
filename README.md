@@ -20,4 +20,4 @@ Camera  | 8MPx, LED Flash
 
 ![Sony Xperia L](http://cdn2.gsmarena.com/vv/pics/sony/sony-xperia-l-01.jpg "Sony Xperia L in black")
 
-This branch is for building MoKee OpenSource 11 (or Android KitKat 4.4 AOSP based roms) ROMS.
+This branch is for building MoKee OpenSource 44 (or Android KitKat 4.4 AOSP based roms) ROMS.
