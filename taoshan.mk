@@ -109,6 +109,11 @@ PRODUCT_PACKAGES += \
     libnl_2 \
     libtinyxml
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/system/etc/hostapd/hostapd_default.conf:system/etc/hostapd/hostapd_default.conf \
+    $(LOCAL_PATH)/rootdir/system/etc/hostapd/hostapd.accept:system/etc/hostapd/hostapd.accept \
+    $(LOCAL_PATH)/rootdir/system/etc/hostapd/hostapd.deny:system/etc/hostapd/hostapd.deny
+
 PRODUCT_PACKAGES += \
     libnfc \
     libnfc_jni \
@@ -149,10 +154,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     wcnss_service
 
-# WIFI MAC update
-PRODUCT_PACKAGES += \
-    mac-update
-
 PRODUCT_PACKAGES += \
     librs_jni \
     com.android.future.usb.accessory
@@ -160,6 +161,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     setup_fs \
     e2fsck
+
+# FM radio
+PRODUCT_PACKAGES += \
+	qcom.fmradio \
+	libqcomfm_jni \
+	FM2 \
+	FMRecord
 
 # GPS-1
 PRODUCT_PACKAGES += \
@@ -178,7 +186,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ril.subscription.types=NV,RUIM \
     telephony.lteOnCdmaDevice=0 \
     ro.use_data_netmgrd=true \
-    ro.telephony.call_ring.multiple=false
+    ro.telephony.call_ring.multiple=false \
+    ro.ril.telephony.mqanelements=6
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.qualcomm.cabl=0 \
@@ -190,15 +199,17 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     qcom.audio.init=complete \
-    af.resampler.quality=255 \
     persist.audio.fluence.mode=endfire \
     persist.audio.vr.enable=false \
-    persist.audio.handset.mic=analog \
+    persist.audio.handset.mic=digital \
     persist.audio.lowlatency.rec=false \
     media.aac_51_output_enabled=true \
     ro.qc.sdk.audio.ssr=false \
     ro.qc.sdk.audio.fluencetype=none \
     lpa.decode=true
+
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    camera2.portability.force_api=1
 
 # GPS-2
 PRODUCT_PROPERTY_OVERRIDES += \

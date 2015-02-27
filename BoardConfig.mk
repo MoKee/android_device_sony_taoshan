@@ -16,6 +16,9 @@
 
 include vendor/sony/taoshan/BoardConfigVendor.mk
 
+# inherit qcom common sepolicies
+include device/qcom/sepolicy/sepolicy.mk
+
 # inherit from Sony common
 include device/sony/common/BoardConfigCommon.mk
 
@@ -38,7 +41,7 @@ COMMON_GLOBAL_CFLAGS += -D__ARM_USE_PLD -D__ARM_CACHE_LINE_SIZE=64
 BOARD_KERNEL_BASE := 0x80200000
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
 # the androidboot.hardware has impact on loading .rc files
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 maxcpus=2
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom androidboot.bootdevice=msm_sdcc.1 user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 maxcpus=2
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 
@@ -75,6 +78,9 @@ EXTENDED_FONT_FOOTPRINT := true
 # MMap compatibility
 BOARD_USES_LEGACY_MMAP := true
 
+# Use dlmalloc
+MALLOC_IMPL := dlmalloc
+
 # GPS
 BOARD_HAVE_NEW_QC_GPS := true
 
@@ -86,7 +92,7 @@ BOARD_USES_ALSA_AUDIO := true
 BOARD_USES_LEGACY_ALSA_AUDIO := true
 TARGET_USES_QCOM_COMPRESSED_AUDIO := true
 QCOM_ANC_HEADSET_ENABLED := false
-QCOM_FLUENCE_ENABLED := false
+AUDIO_FEATURE_ENABLED_FM := true
 
 TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 
@@ -156,25 +162,24 @@ BOARD_SEPOLICY_DIRS += \
     device/sony/taoshan/sepolicy
 
 BOARD_SEPOLICY_UNION += \
-    file_contexts \
-    app.te \
-    bluetooth.te \
-    device.te \
-    domain.te \
-    drmserver.te \
-    file.te \
-    hci_init.te \
-    healthd.te \
-    init.te \
-    init_shell.te \
-    keystore.te \
-    kickstart.te \
-    mediaserver.te \
-    netd.te \
-    property.te \
-    property_contexts \
-    rild.te \
-    surfaceflinger.te \
-    system_server.te \
-    ueventd.te \
-    wpa_supplicant.te
+       adbd.te \
+       device.te \
+       dhcp.te \
+       file_contexts \
+       init_shell.te \
+       location.te \
+       mediaserver.te \
+       mm-qcamerad.te \
+       mpdecision.te \
+       netd.te \
+       netmgrd.te \
+       rild.te \
+       rmt_storage.te \
+       sdcardd.te \
+       shell.te \
+       system_app.te \
+       system_server.te \
+       thermal-engine.te \
+       ueventd.te \
+       vold.te \
+       wpa.te
